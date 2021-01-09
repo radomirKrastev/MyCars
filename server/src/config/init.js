@@ -8,4 +8,8 @@ exports.initializeApplication = async () => {
     await initDb(DB_URL);
 
     //TODO Initialize firebase admin
+    admin.initializeApp({
+        credential: admin.credential.applicationDefault(),
+        databaseURL: 'https://my-cars-540ae.firebaseio.com'
+    });
 };
