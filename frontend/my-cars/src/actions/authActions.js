@@ -30,8 +30,10 @@ const fetchLogoutSuccess = () => ({
     type: LOGOUT_FETCH_SUCCESS
 });
 
-export const login = (email, password) => async dispatch => {
+export const login = (username, password) => async dispatch => {
     try {
+        const loginResponse = await authService.login({username, password});
+        console.log(loginResponse);
         // let response = await auth.signInWithEmailAndPassword(email, password);
 
         // if (!auth.currentUser.emailVerified) {
@@ -52,6 +54,7 @@ export const login = (email, password) => async dispatch => {
         // dispatch(fetchLoginSuccess({ user: response.user, idToken, agencyId, roles }));
         // dispatch(showNotification(messages.loginSuccess, NOTIFICATION_TYPES.SUCCESS));
     } catch (err) {
+        console.log(err);
         // if (err.message.includes('Email not verified.')) {
         //     dispatch(showNotification(messages.emailNotVerified, NOTIFICATION_TYPES.ERROR));
         // } else {

@@ -4,14 +4,19 @@ import api from "./api";
 const authService = {
     login: function (data) {
         return fetch(api.loginUser, {
-            body: JSON.stringify(data),
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
-            }
+            },
+            body: JSON.stringify(data)
         })
-            .then(res => (res.status === 200 ? res : Promise.reject(res)))
-            .then(res => res.json())
+            .then(async res => {
+                if (!res.ok) {
+                    throw await res.json();
+                }
+
+                return res.json();
+            })
     },
     register: function (data) {
         return fetch(api.registerUser, {
@@ -26,7 +31,7 @@ const authService = {
                     throw await res.json();
                 }
 
-                return res.json()
+                return res.json();
             })
     },
 };

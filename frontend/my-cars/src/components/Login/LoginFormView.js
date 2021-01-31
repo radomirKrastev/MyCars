@@ -1,5 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { ErrorMessage } from 'formik';
 
 const LoginFormView = (props) => (
@@ -37,6 +38,15 @@ const LoginFormView = (props) => (
                 variant="outlined"
             />
             <ErrorMessage name="password" component="div" className="invalid-field-message" />
+        </div>
+
+        <div >
+            <Button type="submit" variant="contained" color="primary" onClick={props.handleSubmit}>
+                Log in
+            </Button>
+            {/* <Button className="common-btn sign-up-btn" variant="outlined" color="primary" component={RouterLink} to="/register">
+                Sign Up
+            </Button> */}
         </div>
     </form>
 );
