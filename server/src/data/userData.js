@@ -9,5 +9,9 @@ module.exports = {
 
     checkIsUsernameOccupied: async username => {
         return await getDb().collection('users').countDocuments({ username }, { limit: 1 });
+    },
+
+    getUser: async queryMatch => {
+        return await getDb().collection('users').findOne(queryMatch);
     }
 };
