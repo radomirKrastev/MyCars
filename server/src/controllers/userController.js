@@ -7,65 +7,26 @@ const { JWT_SECRET } = process.env;
 const express = require('express');
 const router = express.Router();
 const verifySignUp = require('../middleware/verifySignUp');
-var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
+const userService = require('../services/userService');
+var jwt = require('jsonwebtoken');
+var bcrypt = require('bcryptjs');
 
 console.log(verifySignUp);
 
 const register = async (req, res) => {
-//   const user = new User({
-//     username: req.body.username,
-//     email: req.body.email,
-//     password: bcrypt.hashSync(req.body.password, 8)
-//   });
+    try {
+        const userData = { username: req.body.username, password: bcrypt.hashSync(req.body.password, 8) };
+        const isUsernameOccupied = await userService.checkIsUsernameOccupied(userData.username);
 
-//   user.save((err, user) => {
-//     if (err) {
-//       res.status(500).send({ message: err });
-//       return;
-//     }
+        if (isUsernameOccupied) {
+            res.status(400).json({ message: 'Username is already in use! Try different one.' });
+        }
 
-//     if (req.body.roles) {
-//       Role.find(
-//         {
-//           name: { $in: req.body.roles }
-//         },
-//         (err, roles) => {
-//           if (err) {
-//             res.status(500).send({ message: err });
-//             return;
-//           }
-
-//           user.roles = roles.map(role => role._id);
-//           user.save(err => {
-//             if (err) {
-//               res.status(500).send({ message: err });
-//               return;
-//             }
-
-//             res.send({ message: "User was registered successfully!" });
-//           });
-//         }
-//       );
-//     } else {
-//       Role.findOne({ name: "user" }, (err, role) => {
-//         if (err) {
-//           res.status(500).send({ message: err });
-//           return;
-//         }
-
-//         user.roles = [role._id];
-//         user.save(err => {
-//           if (err) {
-//             res.status(500).send({ message: err });
-//             return;
-//           }
-
-//           res.send({ message: "User was registered successfully!" });
-//         });
-//       });
-//     }
-//   });
+        await userService.register(userData);
+        res.status(200).send({ message: "User registered successfully!" });
+    } catch (err) {
+        res.status(400).json({ message: 'Registration failed!' });
+    }
 };
 
 router.post('/login', async (req, res) => {

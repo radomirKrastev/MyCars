@@ -1,5 +1,5 @@
 // import { auth } from 'utils/firebase';
-// import authService from 'services/authService';
+import authService from '../services/authService';
 import { push } from 'connected-react-router';
 
 import {
@@ -32,56 +32,57 @@ const fetchLogoutSuccess = () => ({
 
 export const login = (email, password) => async dispatch => {
     try {
-        let response = await auth.signInWithEmailAndPassword(email, password);
+        // let response = await auth.signInWithEmailAndPassword(email, password);
 
-        if (!auth.currentUser.emailVerified) {
-            await auth.signOut();
-            throw new Error('Email not verified.');
-        }
+        // if (!auth.currentUser.emailVerified) {
+        //     await auth.signOut();
+        //     throw new Error('Email not verified.');
+        // }
 
-        let idToken = await auth.currentUser.getIdToken();
+        // let idToken = await auth.currentUser.getIdToken();
 
-        let agencyId;
-        let roles;
+        // let agencyId;
+        // let roles;
 
-        await auth.currentUser.getIdTokenResult().then(idTokenResult => {
-            agencyId = idTokenResult.claims.agencyId;
-            roles = idTokenResult.claims.roles;
-        });
+        // await auth.currentUser.getIdTokenResult().then(idTokenResult => {
+        //     agencyId = idTokenResult.claims.agencyId;
+        //     roles = idTokenResult.claims.roles;
+        // });
 
-        dispatch(fetchLoginSuccess({ user: response.user, idToken, agencyId, roles }));
-        dispatch(showNotification(messages.loginSuccess, NOTIFICATION_TYPES.SUCCESS));
+        // dispatch(fetchLoginSuccess({ user: response.user, idToken, agencyId, roles }));
+        // dispatch(showNotification(messages.loginSuccess, NOTIFICATION_TYPES.SUCCESS));
     } catch (err) {
-        if (err.message.includes('Email not verified.')) {
-            dispatch(showNotification(messages.emailNotVerified, NOTIFICATION_TYPES.ERROR));
-        } else {
-            dispatch(showNotification(messages.usernameOrPasswordtWrong, NOTIFICATION_TYPES.ERROR));
-        }
+        // if (err.message.includes('Email not verified.')) {
+        //     dispatch(showNotification(messages.emailNotVerified, NOTIFICATION_TYPES.ERROR));
+        // } else {
+        //     dispatch(showNotification(messages.usernameOrPasswordtWrong, NOTIFICATION_TYPES.ERROR));
+        // }
     }
 };
 
 export const register = userData => async dispatch => {
     try {
         let user = await authService.register(userData);
-        await dispatch(fetchRegisterSuccess(user));
+        // await dispatch(fetchRegisterSuccess(user));
+        console.log(userData);
 
-        dispatch(showNotification(messages.registerSuccess, NOTIFICATION_TYPES.SUCCESS));
+        // dispatch(showNotification(messages.registerSuccess, NOTIFICATION_TYPES.SUCCESS));
     } catch (err) {
-        dispatch(showNotification(err.message, NOTIFICATION_TYPES.ERROR));
+        // dispatch(showNotification(err.message, NOTIFICATION_TYPES.ERROR));
     }
-}
+};
 
 export const logout = () => async dispatch => {
     try {
-        // TODO: notification logout success
-        await auth.signOut();
+        // // TODO: notification logout success
+        // await auth.signOut();
 
-        dispatch(setHomeInformationInitialState());
-        dispatch(fetchLogoutSuccess());
-        dispatch(push('/login'));
-        console.log("You have signed out.");
+        // dispatch(setHomeInformationInitialState());
+        // dispatch(fetchLogoutSuccess());
+        // dispatch(push('/login'));
+        // console.log("You have signed out.");
     } catch (err) {
         // TODO: notification logout error
-        console.error(err);
+        // console.error(err);
     }
 }
