@@ -16,9 +16,9 @@ const Login = ({ login }) => {
                 validationSchema={loginSchemaValidation}
                 onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(false);
-                    let { username, password } = values;
+                    const { username, password } = values;
+                    console.log('submit', values)
                     login(username, password);
-                    console.log(values)
                 }}
             >
                 {(props) => <LoginFormView {...props} />}

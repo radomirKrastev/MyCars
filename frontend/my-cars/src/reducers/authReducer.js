@@ -4,6 +4,8 @@ import {
 
 const initialState = {
     accessToken: '',
+    username: '',
+    _id: '',
 };
 
 const authReducer = (state = initialState, action) => {
