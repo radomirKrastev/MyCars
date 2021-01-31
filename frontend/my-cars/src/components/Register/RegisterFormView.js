@@ -78,8 +78,8 @@ const RegisterFormView = (props) => (
             </Link>
         </div> */}
 
-        <div className="register-btns">
-            <Button type="submit" className="common-btn register-btn" variant="contained" color="primary" onClick={props.handleSubmit}>
+        <div >
+            <Button type="submit" variant="contained" color="primary" onClick={props.handleSubmit}>
                 Register
             </Button>
             {/* <Button className="common-btn sign-up-btn" variant="outlined" color="primary" component={RouterLink} to="/register">
