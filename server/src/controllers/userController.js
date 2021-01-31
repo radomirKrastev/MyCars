@@ -1,17 +1,11 @@
-const { JWT_SECRET } = process.env;
-// const config = require("../config/auth.config");
-
-// const db = require("../models");
-// const User = db.user;
-// const Role = db.role;
 const express = require('express');
 const router = express.Router();
-const verifySignUp = require('../middleware/verifySignUp');
-const userService = require('../services/userService');
+
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 
-console.log(verifySignUp);
+const userService = require('../services/userService');
+const { JWT_SECRET } = require('../constants/env');
 
 router.post('/register', async (req, res) => {
     try {
@@ -51,7 +45,8 @@ router.post('/login', async (req, res) => {
         expiresIn: 86400 // 24 hours
     });
 
-    res.json({ ...userRecord, accessToken });
+    const { password: passwordDb, ...rest } = userRecord;
+    res.json({ ...rest, accessToken });
 });
 
 module.exports = router;

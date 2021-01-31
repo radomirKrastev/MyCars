@@ -11,7 +11,5 @@ module.exports = {
         return await getDb().collection('users').countDocuments({ username }, { limit: 1 });
     },
 
-    getUser: async queryMatch => {
-        return await getDb().collection('users').findOne(queryMatch);
-    }
+    getUser: async queryMatch => await getDb().collection('users').findOne(queryMatch)
 };
