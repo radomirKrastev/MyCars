@@ -21,11 +21,13 @@ const authService = {
             },
             body: JSON.stringify(data)
         })
-            .then(res => {
-                console.log(res);
-                res.json()
+            .then(async res => {
+                if (!res.ok) {
+                    throw await res.json();
+                }
+
                 return res.json()
-            });
+            })
     },
 };
 

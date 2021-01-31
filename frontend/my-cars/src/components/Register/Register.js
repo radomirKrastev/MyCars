@@ -21,9 +21,7 @@ const Register = ({
                     setSubmitting(false);
                     // let { email, password } = values;
                     // login(email.trim(), password.trim());
-                    console.log(register);
                     register(values)
-                    console.log(values)
                 }}
             >
                 {(props) => <RegisterFormView {...props} />}

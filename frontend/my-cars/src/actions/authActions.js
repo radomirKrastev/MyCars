@@ -62,12 +62,12 @@ export const login = (email, password) => async dispatch => {
 
 export const register = userData => async dispatch => {
     try {
-        let user = await authService.register(userData);
+        await authService.register(userData);
         // await dispatch(fetchRegisterSuccess(user));
-        console.log(userData);
 
         // dispatch(showNotification(messages.registerSuccess, NOTIFICATION_TYPES.SUCCESS));
     } catch (err) {
+        console.log(err);
         // dispatch(showNotification(err.message, NOTIFICATION_TYPES.ERROR));
     }
 };

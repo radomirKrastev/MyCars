@@ -20,10 +20,11 @@ const register = async (req, res) => {
 
         if (isUsernameOccupied) {
             res.status(400).json({ message: 'Username is already in use! Try different one.' });
+        } else {
+            await userService.register(userData);
+            res.status(200).send({ message: "User registered successfully!" });
         }
 
-        await userService.register(userData);
-        res.status(200).send({ message: "User registered successfully!" });
     } catch (err) {
         res.status(400).json({ message: 'Registration failed!' });
     }
