@@ -8,4 +8,6 @@ const createRootReducer = history => combineReducers({
     auth
 });
 
+export const isAuthenticated = state => authSelector.isAuthenticated(state.auth);
+
 export default createRootReducer;
