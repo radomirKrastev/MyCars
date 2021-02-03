@@ -26,7 +26,7 @@ export const login = (username, password) => async dispatch => {
         const loginResponse = await authService.login({ username, password});
         console.log(loginResponse);
         dispatch(fetchLoginSuccess(loginResponse));
-        dispatch(push('/choose-car'));
+        dispatch(push('/choose-cars'));
     } catch (err) {
         console.log(err);
     }
