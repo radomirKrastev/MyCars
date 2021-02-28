@@ -1,0 +1,19 @@
+.my-cars-layout {
+    .MuiDrawer-paperAnchorLeft {
+        background-color: darkgray;
+
+        .list-item {
+            color: purple;
+            padding: 10px 16px 10px 48px;
+    
+            span {
+                font-size: 14px;
+            }
+    
+            &.selected {
+                background-color: aquamarine;
+            }
+        }
+    }
+
+}
