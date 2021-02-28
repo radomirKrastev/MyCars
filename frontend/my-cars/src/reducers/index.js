@@ -3,10 +3,18 @@ import { connectRouter } from 'connected-react-router';
 
 import auth, * as authSelector from './authReducer';
 
-const createRootReducer = history => combineReducers({
+const appReducer = history => combineReducers({
     router: connectRouter(history),
     auth
-});
+})
+
+const createRootReducer = history => (state, action) => {
+    if (action.type === 'USER_LOGOUT') {
+        state = undefined
+    }
+
+    return appReducer(history)(state, action);
+};
 
 export const isAuthenticated = state => authSelector.isAuthenticated(state.auth);
 
