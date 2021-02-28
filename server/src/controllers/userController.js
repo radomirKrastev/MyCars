@@ -18,7 +18,6 @@ router.post('/register', async (req, res) => {
             await userService.register(userData);
             res.status(200).send({ message: "User registered successfully!" });
         }
-
     } catch (err) {
         res.status(400).json({ message: 'Registration failed!' });
     }
@@ -29,7 +28,7 @@ router.post('/login', async (req, res) => {
     const userRecord = await userService.getUserByUsername(username);
 
     if (!userRecord) {
-        res.status(400).json({ message: 'Wrong username.' });
+        return res.status(400).json({ message: 'Wrong username.' });
     }
 
     const passwordIsValid = bcrypt.compareSync(password, userRecord.password);
