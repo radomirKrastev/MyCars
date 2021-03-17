@@ -1,19 +1,25 @@
 .my-cars-layout {
-    .MuiDrawer-paperAnchorLeft {
-        background-color: darkgray;
-
-        .list-item {
-            color: purple;
-            padding: 10px 16px 10px 48px;
+    display: flex;
+    height: 100vh;
     
-            span {
-                font-size: 14px;
-            }
+    // .my-cars-navigation-side {
+        .MuiDrawer-paperAnchorLeft {
+            position: relative;
+            background-color: darkgray;
     
-            &.selected {
-                background-color: aquamarine;
+            .list-item {
+                color: purple;
+                padding: 10px 16px 10px 48px;
+        
+                span {
+                    font-size: 14px;
+                }
+        
+                &.selected {
+                    background-color: aquamarine;
+                }
             }
         }
-    }
-
+    
+    // }
 }

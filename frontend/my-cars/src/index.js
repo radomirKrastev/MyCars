@@ -8,7 +8,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 import App from './App';
 import store, { history } from './config/store';
 
-// import './index.scss';
+import './index.scss';
 
 ReactDOM.render(
     <Provider store={store}>

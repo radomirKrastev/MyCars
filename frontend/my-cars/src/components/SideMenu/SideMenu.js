@@ -24,7 +24,7 @@ const menuItems = [
     },
     {
         title: 'Sell your car',
-        navigateTo: '/sell-cars',
+        navigateTo: '/sell-car',
         icon: <InboxIcon />
     },
     {
@@ -35,43 +35,49 @@ const menuItems = [
 ]
 
 const SideMenu = ({
-    logout
+    logout,
+    children,
 }) => {
     return (
         <div className="my-cars-layout">
-            <Drawer anchor="left" open={true} variant="permanent">
-                <div
-                    className="side-menu"
-                    role="presentation"
-                >
-                    <List>
-                        {menuItems.map((x) => (
-                            <ListItem
-                                button
-                                key={x.title}
-                                component={NavLink}
-                                exact={true}
-                                to={x.navigateTo}
-                                className="list-item"
-                                activeClassName="selected"
-                            >
-                                <ListItemIcon>{x.icon}</ListItemIcon>
-                                <ListItemText primary={x.title} />
-                            </ListItem>
-                        ))}
+            {/* <div className="my-cars-navigation-side"> */}
+                <Drawer anchor="left" open={true} variant="permanent">
+                    <div
+                        className="side-menu"
+                        role="presentation"
+                    >
+                        <List>
+                            {menuItems.map((x) => (
+                                <ListItem
+                                    button
+                                    key={x.title}
+                                    component={NavLink}
+                                    exact={true}
+                                    to={x.navigateTo}
+                                    className="list-item"
+                                    activeClassName="selected"
+                                >
+                                    <ListItemIcon>{x.icon}</ListItemIcon>
+                                    <ListItemText primary={x.title} />
+                                </ListItem>
+                            ))}
 
-                        <ListItem
-                            key={'Logout'}
-                            button
-                            onClick={() => logout()}
-                            className="list-item"
-                        >
-                            <ListItemIcon>{<InboxIcon />}</ListItemIcon>
-                            <ListItemText primary={'Logout'} />
-                        </ListItem>
-                    </List>
-                </div>
-            </Drawer>
+                            <ListItem
+                                key={'Logout'}
+                                button
+                                onClick={() => logout()}
+                                className="list-item"
+                            >
+                                <ListItemIcon>{<InboxIcon />}</ListItemIcon>
+                                <ListItemText primary={'Logout'} />
+                            </ListItem>
+                        </List>
+                    </div>
+                </Drawer>
+            {/* </div> */}
+            <div className='my-cars-content'>
+                {children}
+            </div>
         </div>
     )
 };

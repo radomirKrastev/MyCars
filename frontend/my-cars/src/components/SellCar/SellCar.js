@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ChooseCars = ({ }) => {
+const SellCar = ({ }) => {
     console.log(123);
     return (
         <>
@@ -20,4 +20,4 @@ const ChooseCars = ({ }) => {
     )
 };
 
-export default ChooseCars;
+export default SellCar;
