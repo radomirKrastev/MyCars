@@ -5,12 +5,15 @@
   "main": "index.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.25.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
     "firebase-admin": "^9.4.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.3",
-    "nodemailer": "^6.4.17"
+    "nodemailer": "^6.4.17",
+    "streamifier": "^0.1.1"
   },
   "devDependencies": {
     "dotenv": "^8.2.0",

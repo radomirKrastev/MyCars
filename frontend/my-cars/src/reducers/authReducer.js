@@ -21,3 +21,4 @@ export default authReducer;
 
 export const isAuthenticated = state => Boolean(state.accessToken);
 export const getAccessToken = state => state.accessToken;
+export const getUserId = state => state._id;

@@ -9,13 +9,14 @@ import Home from './components/Home';
 import ChooseCars from './components/ChooseCars';
 import SellCar from './components/SellCar';
 import SideMenu from './components/SideMenu';
+import withUserData from './middlewareHoc/withUserData';
 
 // import './App.scss';
 
 const App = () => (
   <Switch>
     <RouteWrapper path='/choose-cars' component={isAuthenticated(ChooseCars)}/>
-    <RouteWrapper path='/sell-car' component={isAuthenticated(SellCar)}/>
+    <RouteWrapper path='/sell-car' component={isAuthenticated(withUserData(SellCar))}/>
     <RouteWrapper path='/' exact component={isAuthenticated(Home)}/>
     <Route path='/login' exact component={Login}/>
     <Route path='/register' exact component={Register}/>

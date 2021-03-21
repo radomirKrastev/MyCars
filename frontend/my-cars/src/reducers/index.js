@@ -17,5 +17,6 @@ const createRootReducer = history => (state, action) => {
 };
 
 export const isAuthenticated = state => authSelector.isAuthenticated(state.auth);
+export const getUserId = state => authSelector.getUserId(state.auth);
 
 export default createRootReducer;
