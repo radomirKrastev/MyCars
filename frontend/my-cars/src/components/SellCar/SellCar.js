@@ -10,39 +10,29 @@ const SellCar = ({
     userId,
     uploadCarAd,
 }) => {
+    const [selectedCarMake, setSelectedCarMake] = useState('');
     const [carImagesFiles, setCarImagesFiles] = useState({
         carImages: []
     });
 
+    const handleSelectCarMake = make => setSelectedCarMake(make);
+
     const updateUploadedFiles = (files) =>
         setCarImagesFiles({ ...carImagesFiles, carImages: files });
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     //logic to create new user...
-    // };
-
     return (
         <div>
-            {/* <form onSubmit={handleSubmit}>
-                <FileUpload
-                    accept=".jpg,.png,.jpeg"
-                    label="Profile Image(s)"
-                    multiple
-                    updateFilesCb={updateUploadedFiles}
-                />
-                <button type="submit">Create New User</button>
-            </form> */}
-
             <Formik
                 initialValues={{
-                    username: '',
-                    password: '',
+                    make: '',
+                    model: '',
+                    year: '',
+                    price: '',
+                    description: ''
                 }}
                 // validationSchema={loginSchemaValidation}
                 onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(false);
-                    // console.log('submit', values, carImagesFiles, userId);
 
                     const data = new FormData();
 
@@ -55,7 +45,7 @@ const SellCar = ({
                     uploadCarAd(userId, data);
                 }}
             >
-                {(props) => <SellCarFormView {...props} />}
+                {(props) => <SellCarFormView selectedCarMake={selectedCarMake} handleSelectCarMake={handleSelectCarMake} {...props} />}
             </Formik>
 
             <FileUpload

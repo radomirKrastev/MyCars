@@ -13,9 +13,7 @@ const fetchUserUploadCarAdSuccess = (userData) => ({
 export const uploadCarAd = (userId, data) => async dispatch => {
     try {
         console.log(userId, data);
-        const carAdResult = await userService.uploadCarAd(userId, data);
-        console.log(carAdResult);
-        // dispatch(push('/login'));
+        await userService.uploadCarAd(userId, data);
 
     } catch (err) {
         console.log(err);

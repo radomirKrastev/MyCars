@@ -1,13 +1,15 @@
 import api from './api';
-// import axios from 'axios';
+
+import store from '../config/store';
 
 const authService = {
     uploadCarAd: function (userId, data) {
-        console.log(data)
+        const state = store.getState();
+        const token = state.auth.accessToken;
         return fetch(api.carAd(userId), {
             method: 'POST',
             headers: {
-                // 'Content-Type': 'application/json'
+                ...(token && { 'x-access-token': token })
             },
             body: data
         })
