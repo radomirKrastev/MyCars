@@ -3,7 +3,7 @@ import api from "./api";
 
 const authService = {
     login: function (data) {
-        return fetch(api.loginUser, {
+        return fetch(api.loginUser(), {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
@@ -18,8 +18,9 @@ const authService = {
                 return res.json();
             })
     },
+
     register: function (data) {
-        return fetch(api.registerUser, {
+        return fetch(api.registerUser(), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -34,8 +34,8 @@ const saveState = (state) => {
 
 const middlewares = [routerMiddleware(history), thunk];
 
-console.log("STORE 1", window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
-console.log("STORE 2", compose)
+// console.log("STORE 1", window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+// console.log("STORE 2", compose)
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

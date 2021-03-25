@@ -6,6 +6,7 @@ var bcrypt = require('bcryptjs');
 
 const userService = require('../services/userService');
 const { JWT_SECRET } = require('../constants/env');
+const adController = require('./adController');
 
 router.post('/register', async (req, res) => {
     try {
@@ -18,7 +19,6 @@ router.post('/register', async (req, res) => {
             await userService.register(userData);
             res.status(200).send({ message: "User registered successfully!" });
         }
-
     } catch (err) {
         res.status(400).json({ message: 'Registration failed!' });
     }
@@ -29,7 +29,7 @@ router.post('/login', async (req, res) => {
     const userRecord = await userService.getUserByUsername(username);
 
     if (!userRecord) {
-        res.status(400).json({ message: 'Wrong username.' });
+        return res.status(400).json({ message: 'Wrong username.' });
     }
 
     const passwordIsValid = bcrypt.compareSync(password, userRecord.password);
@@ -48,5 +48,7 @@ router.post('/login', async (req, res) => {
     const { password: passwordDb, ...rest } = userRecord;
     res.json({ ...rest, accessToken });
 });
+
+router.use('/:userId/car-ad', adController);
 
 module.exports = router;

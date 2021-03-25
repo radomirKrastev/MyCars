@@ -1,0 +1,25 @@
+.my-cars-layout {
+    display: flex;
+    height: 100vh;
+    
+    // .my-cars-navigation-side {
+        .MuiDrawer-paperAnchorLeft {
+            position: relative;
+            background-color: darkgray;
+    
+            .list-item {
+                color: purple;
+                padding: 10px 16px 10px 48px;
+        
+                span {
+                    font-size: 14px;
+                }
+        
+                &.selected {
+                    background-color: aquamarine;
+                }
+            }
+        }
+    
+    // }
+}
