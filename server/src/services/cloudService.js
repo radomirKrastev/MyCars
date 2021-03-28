@@ -1,4 +1,4 @@
-const adData = require('../data/adData');
+const carsData = require('../data/carsData');
 const cloudinary = require('cloudinary').v2;
 
 const uploadPictures = async (files) => {

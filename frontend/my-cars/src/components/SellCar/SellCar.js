@@ -4,7 +4,7 @@ import FileUpload from '../Shared/FileUpload';
 import SellCarFormView from './SellCarFormView';
 import { Formik } from 'formik';
 
-import { uploadCarAd } from '../../actions/userAcions';
+import { uploadCarAd } from '../../actions/carAcions';
 
 const SellCar = ({
     userId,

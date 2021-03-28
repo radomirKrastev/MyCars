@@ -7,10 +7,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import { ErrorMessage } from 'formik';
 
-import { years } from '../../constants/globalConstants';
-import { carMakes, getMakeModels } from '../../utils/carsData';
+import { years } from '../../../constants/globalConstants';
+import { carMakes, getMakeModels } from '../../../utils/carsData';
 
-const SellCarFormView = ({
+const ChooseCarsFilterForm = ({
     values,
     errors,
     touched,
@@ -20,7 +20,7 @@ const SellCarFormView = ({
     handleSelectCarMake,
     selectedCarMake,
 }) => (
-    <form className="sell-car-form" autoComplete="off">
+    <form className="choose-car-form" autoComplete="off">
 
         <FormControl variant="outlined" fullWidth>
             <InputLabel >Make</InputLabel>
@@ -28,8 +28,6 @@ const SellCarFormView = ({
                 name="make"
                 value={values.make}
                 onChange={(e) => {
-
-                    console.log(selectedCarMake);
                     handleChange(e);
                     handleSelectCarMake(e.target.value);
                 }}
@@ -67,14 +65,14 @@ const SellCarFormView = ({
         </FormControl>
 
         <FormControl variant="outlined" fullWidth>
-            <InputLabel >Year</InputLabel>
+            <InputLabel >Year From</InputLabel>
             <Select
-                name="year"
+                name="yearFrom"
                 type="number"
-                value={values.year}
+                value={values.yearFrom}
                 onChange={handleChange}
-                label="Year"
-                error={errors.year && touched.year}
+                label="Year From"
+                error={errors.yearFrom && touched.yearFrom}
             >
                 {years
                     .map(year => (
@@ -83,47 +81,67 @@ const SellCarFormView = ({
                         </MenuItem>
                     ))}
             </Select>
-            <ErrorMessage name="year" component="div" className="invalid-field-message" />
+            <ErrorMessage name="yearFrom" component="div" className="invalid-field-message" />
+        </FormControl>
+
+        <FormControl variant="outlined" fullWidth>
+            <InputLabel >Year To</InputLabel>
+            <Select
+                name="yearTo"
+                type="number"
+                value={values.yearTo}
+                onChange={handleChange}
+                label="Year To"
+                error={errors.yearTo && touched.yearTo}
+            >
+                {years
+                    .map(year => (
+                        <MenuItem key={year} value={year}>
+                            {year}
+                        </MenuItem>
+                    ))}
+            </Select>
+            <ErrorMessage name="yearTo" component="div" className="invalid-field-message" />
         </FormControl>
 
         <div>
             <TextField
                 required
-                name="price"
+                name="minPrice"
                 type="number"
-                value={values.price}
+                value={values.minPrice}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                label="Price"
-                error={errors.price && touched.price}
+                label="Price From"
+                error={errors.minPrice && touched.minPrice}
                 margin="normal"
                 variant="outlined"
             />
-            <ErrorMessage name="price" component="div" className="invalid-field-message" />
+            <ErrorMessage name="minPrice" component="div" className="invalid-field-message" />
+        </div>
+
+        <div>
+            <TextField
+                required
+                name="maxPrice"
+                type="number"
+                value={values.maxPrice}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                label="Price To"
+                error={errors.maxPrice && touched.maxPrice}
+                margin="normal"
+                variant="outlined"
+            />
+            <ErrorMessage name="maxPrice" component="div" className="invalid-field-message" />
         </div>
 
         <div >
-			<TextField
-				name="description"
-				value={values.description}
-				onChange={handleChange}
-				label="Description"
-				error={errors.description && touched.description}
-				margin="normal"
-				variant="outlined"
-				multiline
-				rows={4}
-				fullWidth
-			/>
-			<ErrorMessage name="description" component="div" className="invalid-field-message" />
-		</div>
-
-        <div >
             <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
-                Sell your car
+                Search Cars
             </Button>
         </div>
     </form>
 );
 
-export default SellCarFormView;
+export default ChooseCarsFilterForm;
