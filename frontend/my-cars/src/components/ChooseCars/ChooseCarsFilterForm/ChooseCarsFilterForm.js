@@ -5,6 +5,8 @@ import { Formik } from 'formik';
 
 // import { uploadCarAd } from '../../actions/userAcions';
 
+import './ChooseCarsFilterForm.scss';
+
 const ChooseCarsFilterForm = ({
     handleSearchCars
 }) => {
@@ -13,25 +15,23 @@ const ChooseCarsFilterForm = ({
     const handleSelectCarMake = make => setSelectedCarMake(make);
 
     return (
-        <div>
-            <Formik
-                initialValues={{
-                    make: '',
-                    model: '',
-                    yearFrom: '',
-                    yearTo: '',
-                    minPrice: '',
-                    maxPrice: '',
-                }}
-                // validationSchema={loginSchemaValidation}
-                onSubmit={(values, { setSubmitting }) => {
-                    setSubmitting(false);
-                    handleSearchCars(values);
-                }}
-            >
-                {(props) => <ChooseCarsFilterFormView selectedCarMake={selectedCarMake} handleSelectCarMake={handleSelectCarMake} {...props} />}
-            </Formik>
-        </div>
+        <Formik
+            initialValues={{
+                make: '',
+                model: '',
+                yearFrom: '',
+                yearTo: '',
+                minPrice: '',
+                maxPrice: '',
+            }}
+            // validationSchema={loginSchemaValidation}
+            onSubmit={(values, { setSubmitting }) => {
+                setSubmitting(false);
+                handleSearchCars(values);
+            }}
+        >
+            {(props) => <ChooseCarsFilterFormView selectedCarMake={selectedCarMake} handleSelectCarMake={handleSelectCarMake} {...props} />}
+        </Formik>
     );
 };
 

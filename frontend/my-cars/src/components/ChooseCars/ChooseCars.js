@@ -5,6 +5,8 @@ import { searchCars } from '../../actions/carAcions';
 import { getCars } from '../../reducers';
 
 import ChooseCarsFilterForm from './ChooseCarsFilterForm';
+import CarCard from '../CarCard';
+import './ChooseCars.scss';
 
 const ChooseCars = ({ searchCars, cars }) => {
     const [filters, setFilters] = useState({
@@ -17,13 +19,12 @@ const ChooseCars = ({ searchCars, cars }) => {
     });
 
     const handleSearchCars = formFilters => {
-        console.log({formFilters})
         const filtersSelected = {
             ...formFilters,
-            yearFrom: formFilters.yearFrom > 0 ? formFilters.yearFrom : filters.yearFrom,  
-            yearTo: formFilters.yearTo > 0 ? formFilters.yearTo : filters.yearTo,  
-            minPrice: formFilters.minPrice > 0 ? formFilters.minPrice : filters.minPrice,  
-            maxPrice: formFilters.maxPrice > 0 ? formFilters.maxPrice : filters.maxPrice, 
+            yearFrom: formFilters.yearFrom > 0 ? formFilters.yearFrom : filters.yearFrom,
+            yearTo: formFilters.yearTo > 0 ? formFilters.yearTo : filters.yearTo,
+            minPrice: formFilters.minPrice > 0 ? formFilters.minPrice : filters.minPrice,
+            maxPrice: formFilters.maxPrice > 0 ? formFilters.maxPrice : filters.maxPrice,
         }
         setFilters(filtersSelected);
         searchCars(filtersSelected);
@@ -33,7 +34,16 @@ const ChooseCars = ({ searchCars, cars }) => {
 
     return (
         <div className="choose-cars-page-wrapper">
-            <ChooseCarsFilterForm filters={filters} handleSearchCars={handleSearchCars}/>
+            <ChooseCarsFilterForm filters={filters} handleSearchCars={handleSearchCars} />
+
+            <div className="choose-cars-cards-container">
+                {cars.map(x => {
+                    return <CarCard
+                        key={x._id}
+                        carInfo={x}
+                    />
+                })}
+            </div>
         </div>
     )
 };
