@@ -20,7 +20,7 @@ const SellCarFormView = ({
     handleSelectCarMake,
     selectedCarMake,
 }) => (
-    <form className="login-form" autoComplete="off">
+    <form className="sell-car-form" autoComplete="off">
 
         <FormControl variant="outlined" fullWidth>
             <InputLabel >Make</InputLabel>

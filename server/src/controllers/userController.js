@@ -6,7 +6,7 @@ var bcrypt = require('bcryptjs');
 
 const userService = require('../services/userService');
 const { JWT_SECRET } = require('../constants/env');
-const adController = require('./adController');
+const carController = require('./carController');
 
 router.post('/register', async (req, res) => {
     try {
@@ -49,6 +49,6 @@ router.post('/login', async (req, res) => {
     res.json({ ...rest, accessToken });
 });
 
-router.use('/:userId/car-ad', adController);
+router.use('/:userId/cars', carController);
 
 module.exports = router;

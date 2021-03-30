@@ -3,11 +3,13 @@ const router = express.Router();
 
 // const { verifySignUp } = require('./middleware/verifySignUp');
 const userController = require("./controllers/userController");
+const carController = require("./controllers/carController");
 
 router.get('/', (req, res) => {
     res.json({message: 'It\'s working... v3'});
 });
 
+router.use('/cars', carController);
 router.use('/users', userController);
 
 // router.post(
