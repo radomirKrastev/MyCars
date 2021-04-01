@@ -1,0 +1,70 @@
+
+.car-details-page {
+    width: 100%;
+
+    .car-details-card {
+        margin: 0 auto;  
+        width: 80%;
+            
+        .image-container {              
+            width: 100%;
+            
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .car-info-content {
+            padding: 10px;
+
+            .car-info {
+                display: flex;
+                justify-content: space-between;
+                
+                .car-detail-container {
+                    display: flex;
+
+                    .detail {
+                        margin-left: 15px;
+                    }                 
+                }
+            }
+
+            .car-description {
+                margin-top: 20px;
+
+                .car-deital-container.description {
+                    text-align: center;
+                }
+
+                pre {
+                    // font-family: 'Roboto', sans-serif;
+                    // color: #7E7E7E;
+                    // font-size: 16px;
+                    white-space: pre-wrap;
+                    white-space: -moz-pre-wrap;
+                    white-space: -pre-wrap;
+                    white-space: -o-pre-wrap;
+                    word-wrap: break-word;
+                }
+            }
+
+            .buttons-container {
+                width: fit-content;
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+
+// .image {
+//     // background-position: 50% 50%;
+//     // background-size: contain;
+//     // background-repeat: no-repeat;
+//     background-size: contain;
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     min-height: 40vh;
+//   }

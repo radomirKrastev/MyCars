@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -7,10 +8,19 @@ import './CarCard.scss';
 
 const CarCard = ({
     carInfo,
+    userId
 }) => {
-    console.log(12333)
+    const history = useHistory();
+
+    const handleRedirectToCarDetails = () => {
+        history.push({
+            pathname: `/car-details/${carInfo._id}`,
+            state: { userId, carInfo }
+        })
+    };
+
     return (
-        <Paper className="car-info-card">
+        <Paper className="car-info-card" onClick={handleRedirectToCarDetails}>
             <div className="car-info-container">
                 <div className="image-container">
                     <img src={carInfo.uploadedImagesData[0].url}></img>
@@ -34,8 +44,7 @@ const CarCard = ({
 
                     <div className="car-description">
                         <Typography className="car-deital-container description">Description:</Typography>
-
-                        <p>{carInfo.description}</p>
+                        <pre>{carInfo.description}</pre>
                     </div>
                 </div>
             </div>

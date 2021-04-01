@@ -1,0 +1,24 @@
+.make-offer-dialog {
+    .MuiPaper-root,
+    .MuiDialog-paperWidthSm {
+        max-width: 70%;
+        width: 70%;
+    }
+
+    .dialog-title-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .dialog-close-btn {
+            width: 20px;
+            height: 20px;
+        }
+    }
+    
+    .buttons-container {
+        margin: 10px 0 10px 0;
+        width: fit-content;
+        margin-left: auto;
+    }
+}

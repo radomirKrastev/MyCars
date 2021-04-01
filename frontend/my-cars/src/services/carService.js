@@ -22,6 +22,27 @@ const carService = {
             })
     },
 
+    createBuyCarOffer: function (userId, carId, data) {
+        const state = store.getState();
+        const token = state.auth.accessToken;
+
+        return fetch(api.userCar(userId, carId), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                ...(token && { 'x-access-token': token })
+            },
+            body: JSON.stringify(data)
+        })
+            .then(async res => {
+                if (!res.ok) {
+                    throw await res.json();
+                }
+
+                return res.json();
+            })
+    },
+
     searchCars: function (filters) {
         const state = store.getState();
         const token = state.auth.accessToken;

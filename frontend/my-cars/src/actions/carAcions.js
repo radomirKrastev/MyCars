@@ -35,3 +35,11 @@ export const searchCars = filters => async dispatch => {
         console.log(err);
     }
 };
+
+export const createBuyCarOffer = (userId, carId, offer) => async dispatch => {
+    try {
+        await carService.createBuyCarOffer(userId, carId, offer);
+    } catch (err) {
+        console.log(err);
+    }
+};

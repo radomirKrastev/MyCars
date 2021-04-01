@@ -2,6 +2,8 @@ const carsData = require('../data/carsData');
 
 const addCar = carInfo => carsData.create(carInfo);
 
+const addCarBuyOffer = (carId, offerData) => carsData.addCarBuyOffer(carId, offerData);
+
 const searchCars = filters => {
     //add BE validation
     const matchQuery = {
@@ -17,4 +19,5 @@ const searchCars = filters => {
 module.exports = {
     addCar,
     searchCars,
+    addCarBuyOffer,
 };

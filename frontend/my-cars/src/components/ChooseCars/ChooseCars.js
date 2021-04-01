@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { searchCars } from '../../actions/carAcions';
-import { getCars } from '../../reducers';
+import { getCars, getUserId } from '../../reducers';
 
 import ChooseCarsFilterForm from './ChooseCarsFilterForm';
 import CarCard from '../CarCard';
 import './ChooseCars.scss';
 
-const ChooseCars = ({ searchCars, cars }) => {
+const ChooseCars = ({ 
+    searchCars,
+    cars,
+    userId
+    }) => {
     const [filters, setFilters] = useState({
         make: '',
         model: '',
@@ -41,6 +45,7 @@ const ChooseCars = ({ searchCars, cars }) => {
                     return <CarCard
                         key={x._id}
                         carInfo={x}
+                        userId={userId}
                     />
                 })}
             </div>
@@ -50,6 +55,7 @@ const ChooseCars = ({ searchCars, cars }) => {
 
 const mapStateToProps = state => ({
     cars: getCars(state),
+    userId: getUserId(state),
 });
 
 const mapDispatchToProps = { searchCars };

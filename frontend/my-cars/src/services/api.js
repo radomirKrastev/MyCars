@@ -5,6 +5,7 @@ const api = {
     loginUser: () => `${API_URL}/users/login`,
     userCars: (userId) => `${API_URL}/users/${userId}/cars`,
     cars: (filters) => `${API_URL}/cars?filters=${filters}`,
+    userCar: (userId, carId) => `${API_URL}/users/${userId}/cars/${carId}`,
 };
 
 export default api;
