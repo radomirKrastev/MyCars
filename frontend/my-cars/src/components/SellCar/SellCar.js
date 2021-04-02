@@ -21,7 +21,7 @@ const SellCar = ({
         setCarImagesFiles({ ...carImagesFiles, carImages: files });
 
     return (
-        <div>
+        <div className="sell-car-page-wrapper">
             <Formik
                 initialValues={{
                     make: '',
@@ -45,15 +45,15 @@ const SellCar = ({
                     uploadCarAd(userId, data);
                 }}
             >
-                {(props) => <SellCarFormView selectedCarMake={selectedCarMake} handleSelectCarMake={handleSelectCarMake} {...props} />}
+                {(props) => <SellCarFormView updateUploadedFiles={updateUploadedFiles} selectedCarMake={selectedCarMake} handleSelectCarMake={handleSelectCarMake} {...props} />}
             </Formik>
 
-            <FileUpload
+            {/* <FileUpload
                 accept=".jpg,.png,.jpeg"
                 label="Car images"
                 multiple
                 updateFilesCb={updateUploadedFiles}
-            />
+            /> */}
         </div>
     );
 };

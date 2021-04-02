@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const FileUploadContainer = styled.section`
   position: relative;
-  margin: 25px 0 15px;
+  margin: 50px 0 15px;
   border: 2px dotted lightgray;
   padding: 35px 20px;
   border-radius: 6px;
@@ -31,8 +31,10 @@ export const FormField = styled.input`
 `;
 
 export const InputLabel = styled.label`
-  top: -21px;
-  font-size: 13px;
+  top: -25px;
+  font-weight: bold;
+    color: red;
+  ${'' /* font-size: 13px; */}
   color: black;
   left: 0;
   position: absolute;
@@ -131,9 +133,11 @@ export const UploadFileBtn = styled.button`
 
 export const FilePreviewContainer = styled.article`
   margin-bottom: 35px;
-
+  
   span {
-    font-size: 14px;
+    font-size: 15px;
+    ${'' /* font-weight: bold;
+    color: red; */}
   }
 `;
 
