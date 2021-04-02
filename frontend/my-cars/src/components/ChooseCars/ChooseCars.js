@@ -29,6 +29,7 @@ const ChooseCars = ({
             yearTo: formFilters.yearTo > 0 ? formFilters.yearTo : filters.yearTo,
             minPrice: formFilters.minPrice > 0 ? formFilters.minPrice : filters.minPrice,
             maxPrice: formFilters.maxPrice > 0 ? formFilters.maxPrice : filters.maxPrice,
+            userId
         }
         setFilters(filtersSelected);
         searchCars(filtersSelected);

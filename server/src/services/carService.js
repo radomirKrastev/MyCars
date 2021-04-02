@@ -7,6 +7,7 @@ const addCarBuyOffer = (carId, offerData) => carsData.addCarBuyOffer(carId, offe
 const searchCars = filters => {
     //add BE validation
     const matchQuery = {
+        userId: { $ne: filters.userId },
         make: filters.make,
         model: filters.model,
         year: { $gte: filters.yearFrom, $lte: filters.yearTo },
