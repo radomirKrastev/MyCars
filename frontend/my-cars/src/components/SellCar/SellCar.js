@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import FileUpload from '../Shared/FileUpload';
 import SellCarFormView from './SellCarFormView';
 import { Formik } from 'formik';
 
-import { uploadCarAd } from '../../actions/carAcions';
+import { uploadCarAd, updateCarOffer } from '../../actions/carAcions';
 
 const SellCar = ({
     userId,
+    isEditMode,
+    carInfo,
     uploadCarAd,
+    updateCarOffer,
 }) => {
-    const [selectedCarMake, setSelectedCarMake] = useState('');
+    const [selectedCarMake, setSelectedCarMake] = useState(carInfo ? carInfo.make : '');
     const [carImagesFiles, setCarImagesFiles] = useState({
         carImages: []
     });
+
+    const history = useHistory();
 
     const handleSelectCarMake = make => setSelectedCarMake(make);
 
@@ -21,19 +27,18 @@ const SellCar = ({
         setCarImagesFiles({ ...carImagesFiles, carImages: files });
 
     return (
-        <div className="sell-car-page-wrapper">
+        <div className="sell-car-form-wrapper">
             <Formik
                 initialValues={{
-                    make: '',
-                    model: '',
-                    year: '',
-                    price: '',
-                    description: ''
+                    make: carInfo ? carInfo.make : '',
+                    model: carInfo ? carInfo.model : '',
+                    year: carInfo ? carInfo.year : '',
+                    price: carInfo ? carInfo.price : '',
+                    description: carInfo ? carInfo.description : ''
                 }}
                 // validationSchema={loginSchemaValidation}
                 onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(false);
-
                     const data = new FormData();
 
                     data.append('sellCarInfo', JSON.stringify({ ...values }));
@@ -42,10 +47,21 @@ const SellCar = ({
                         data.append(`carImageFile${i + 1}`, file);
                     });
 
-                    uploadCarAd(userId, data);
+                    if (isEditMode) {
+                        updateCarOffer(userId, carInfo._id, data);
+                        history.push('/my-car-ads');
+                    } else {
+                        uploadCarAd(userId, data);
+                    }
                 }}
             >
-                {(props) => <SellCarFormView updateUploadedFiles={updateUploadedFiles} selectedCarMake={selectedCarMake} handleSelectCarMake={handleSelectCarMake} {...props} />}
+                {(props) => <SellCarFormView
+                    updateUploadedFiles={updateUploadedFiles}
+                    selectedCarMake={selectedCarMake}
+                    handleSelectCarMake={handleSelectCarMake}
+                    isEditMode={isEditMode}
+                    {...props} />
+                }
             </Formik>
 
             {/* <FileUpload
@@ -58,6 +74,6 @@ const SellCar = ({
     );
 };
 
-const mapDispatchToProps = { uploadCarAd };
+const mapDispatchToProps = { uploadCarAd, updateCarOffer };
 
 export default connect(null, mapDispatchToProps)(SellCar);

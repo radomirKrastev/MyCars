@@ -1,12 +1,26 @@
 const express = require('express');
 const router = express.Router();
 
-// const { verifySignUp } = require('./middleware/verifySignUp');
+const { verifyToken } = require('./middleware/authorise');
+const carService = require('./services/carService');
+
 const userController = require("./controllers/userController");
 const carController = require("./controllers/carController");
 
 router.get('/', (req, res) => {
     res.json({message: 'It\'s working... v3'});
+});
+
+router.get('/cars', verifyToken, async (req, res) => {
+    try {
+        const filters = JSON.parse(req.query.filters);
+        let cars = await carService.searchCars(filters);
+
+        res.json(cars);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ message: 'Get cars failed!' });
+    }
 });
 
 router.use('/cars', carController);

@@ -23,8 +23,8 @@ router.post('/', verifyToken, async (req, res) => {
 
 router.get('/', verifyToken, async (req, res) => {
     try {
-        const filters = JSON.parse(req.query.filters);
-        let cars = await carService.searchCars(filters);
+        const { userId } = req.params;
+        const cars = await carService.getUserCars(userId);
 
         res.json(cars);
     } catch (err) {
@@ -44,6 +44,28 @@ router.post('/:carId', verifyToken, async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(400).json({ message: 'Make car offer failed!' });
+    }
+});
+
+router.put('/:carId', verifyToken, async (req, res) => {
+    try {
+        const { carId } = req.params;
+        const { make, model, year, price, description } = JSON.parse(req.body.sellCarInfo);
+
+        let carData = { make, model, year, price, description, userId: req.userId };
+        
+        if (req.files) {
+            const uploadedImagesPromise = await cloudService.uploadPictures(req.files);
+            const uploadedImagesData = await Promise.all(uploadedImagesPromise);
+            carData = { ...carData, uploadedImagesData };
+        }
+
+        await carService.updateCar(carId, carData);
+
+        res.json({ _id: carId, ...carData });
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ message: 'Add car failed!' });
     }
 });
 

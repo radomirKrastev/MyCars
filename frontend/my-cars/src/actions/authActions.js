@@ -3,7 +3,6 @@ import { push } from 'connected-react-router';
 
 import {
     LOGIN_FETCH_SUCCESS,
-    // REGISTER_FETCH_SUCCESS,
     USER_LOGOUT,
 } from './actionTypes';
 
@@ -11,11 +10,6 @@ const fetchLoginSuccess = (userData) => ({
     type: LOGIN_FETCH_SUCCESS,
     payload: userData
 });
-
-// const fetchRegisterSuccess = (userData) => ({
-//     type: REGISTER_FETCH_SUCCESS,
-//     payload: userData
-// });
 
 const userLogout = () => ({
     type: USER_LOGOUT
@@ -48,7 +42,6 @@ export const logout = () => async dispatch => {
         dispatch(push('/login'));
         console.log("You have signed out.");
     } catch (err) {
-        // TODO: notification logout error
         console.error(err);
     }
-}
+};

@@ -12,27 +12,40 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 import MakeOfferDialog from './MakeOfferDialog';
+import EditSellCarDialog from './EditSellCarDialog';
 
 import './CarDetails.scss';
 
-const CarDetails = ({ 
+const CarDetails = ({
     createBuyCarOffer
 }) => {
     const history = useHistory();
     const { userId, carInfo } = history.location.state;
     console.log(userId);
+    console.log(carInfo);
+
 
     //Stepper
     const [activeStep, setActiveStep] = useState(0);
     const maxSteps = carInfo.uploadedImagesData.length;
     const handleNext = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
     const handlePrevious = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    
+
     //Make offer dialog
     const [isMakeOfferDialogOpen, setIsMakeOfferDialogOpen] = useState(false);
 
     const hanleOpenMakeOfferDialog = () => setIsMakeOfferDialogOpen(true);
     const hanleCloseMakeOfferDialog = () => setIsMakeOfferDialogOpen(false);
+
+    //Is Edit dialog open
+    const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+
+    const hanleOpenEditDialog = () => setIsEditDialogOpen(true);
+    const hanleCloseEditDialog = () => setIsEditDialogOpen(false);
+
+
+    const isOwner = userId == carInfo.userId;
+    console.log(isOwner)
 
     return (
         <div className="car-details-page">
@@ -82,21 +95,43 @@ const CarDetails = ({
                     </div>
 
                     <div className="buttons-container">
-                        <Button variant="contained" color="primary" onClick={hanleOpenMakeOfferDialog}>
-                            Make an offer
-                        </Button>
+                        {isOwner
+                            ? <>
+                                <Button variant="contained" color="primary" onClick={hanleOpenEditDialog}>
+                                    Edit
+                                </Button>
+                                <Button variant="contained" color="secondary" onClick={hanleOpenMakeOfferDialog}>
+                                    Delete
+                                </Button>
+                            </>
+                            : <Button variant="contained" color="primary" onClick={hanleOpenMakeOfferDialog}>
+                                Make an offer
+                            </Button>
+                        }
                     </div>
                 </div>
 
             </Paper>
 
-            <MakeOfferDialog
-                userId={userId}
-                carId={carInfo._id}
-                handleCloseDialog={hanleCloseMakeOfferDialog}
-                isOpen={isMakeOfferDialogOpen}
-                createBuyCarOffer={createBuyCarOffer}
-            />
+            {
+                !isOwner && <MakeOfferDialog
+                    userId={userId}
+                    carId={carInfo._id}
+                    handleCloseDialog={hanleCloseMakeOfferDialog}
+                    isOpen={isMakeOfferDialogOpen}
+                    createBuyCarOffer={createBuyCarOffer}
+                />
+            }
+
+            {
+                isOwner && <EditSellCarDialog
+                    userId={userId}
+                    isOpen={isEditDialogOpen}
+                    handleCloseDialog={hanleCloseEditDialog}
+                    carInfo={carInfo}
+                />
+            }
+
         </div>
     )
 };

@@ -23,11 +23,12 @@ const SellCarFormView = ({
     handleSelectCarMake,
     selectedCarMake,
     updateUploadedFiles,
-    isEdit,
+    isEditMode,
 }) => (
     <form className="sell-car-form" autoComplete="off">
 
         <div className="form-block">
+            {console.log({values})}
             <FormControl variant="outlined" fullWidth className="form-field">
                 <InputLabel >Make</InputLabel>
                 <Select
@@ -130,7 +131,7 @@ const SellCarFormView = ({
 
         <FileUpload
             accept=".jpg,.png,.jpeg"
-            label={isEdit ? 'Upload you car images (This will replace the previous uploaded images)' : 'Upload your car images'}
+            label={isEditMode ? 'Upload you car images (This will replace the previous uploaded images)' : 'Upload your car images'}
             multiple
             updateFilesCb={updateUploadedFiles}
         />

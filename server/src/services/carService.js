@@ -1,8 +1,16 @@
+const { ObjectID } = require('../data/db');
 const carsData = require('../data/carsData');
 
 const addCar = carInfo => carsData.create(carInfo);
 
 const addCarBuyOffer = (carId, offerData) => carsData.addCarBuyOffer(carId, offerData);
+
+const updateCar = (carId, updateData) => {
+    const matchCriteria = { _id: ObjectID(carId) };
+    const updateOperation = { $set: updateData };
+
+    carsData.updateCar(matchCriteria, updateOperation);
+};
 
 const searchCars = filters => {
     //add BE validation
@@ -14,11 +22,20 @@ const searchCars = filters => {
         price: { $gte: filters.minPrice, $lte: filters.maxPrice },
     };
 
-    return carsData.searchCars(matchQuery);
+    return carsData.getCars(matchQuery);
+};
+
+const getUserCars = userId => {
+    //add BE validation
+    const matchQuery = { userId };
+
+    return carsData.getCars(matchQuery);
 };
 
 module.exports = {
     addCar,
     searchCars,
     addCarBuyOffer,
+    getUserCars,
+    updateCar,
 };

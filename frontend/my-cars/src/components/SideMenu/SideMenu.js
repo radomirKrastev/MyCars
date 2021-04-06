@@ -28,8 +28,8 @@ const menuItems = [
         icon: <InboxIcon />
     },
     {
-        title: 'Your profile',
-        navigateTo: '/your-profile',
+        title: 'My car ads',
+        navigateTo: '/my-car-ads',
         icon: <InboxIcon />
     },
 ]

@@ -8,7 +8,7 @@ import './CarCard.scss';
 
 const CarCard = ({
     carInfo,
-    userId
+    userId,
 }) => {
     const history = useHistory();
 
@@ -16,7 +16,7 @@ const CarCard = ({
         history.push({
             pathname: `/car-details/${carInfo._id}`,
             state: { userId, carInfo }
-        })
+        });
     };
 
     return (
