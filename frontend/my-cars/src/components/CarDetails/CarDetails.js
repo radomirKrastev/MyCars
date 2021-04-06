@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { createBuyCarOffer } from '../../actions/carAcions';
+import { createBuyCarOffer, deleteCarOffer } from '../../actions/carAcions';
 
 import Paper from '@material-ui/core/Paper';
 import MobileStepper from '@material-ui/core/MobileStepper';
@@ -13,11 +13,13 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
 import MakeOfferDialog from './MakeOfferDialog';
 import EditSellCarDialog from './EditSellCarDialog';
+import ConfirmDeleteDialog from '../Shared/ConfirmDeleteDialog';
 
 import './CarDetails.scss';
 
 const CarDetails = ({
-    createBuyCarOffer
+    createBuyCarOffer,
+    deleteCarOffer,
 }) => {
     const history = useHistory();
     const { userId, carInfo } = history.location.state;
@@ -34,18 +36,28 @@ const CarDetails = ({
     //Make offer dialog
     const [isMakeOfferDialogOpen, setIsMakeOfferDialogOpen] = useState(false);
 
-    const hanleOpenMakeOfferDialog = () => setIsMakeOfferDialogOpen(true);
-    const hanleCloseMakeOfferDialog = () => setIsMakeOfferDialogOpen(false);
+    const handleOpenMakeOfferDialog = () => setIsMakeOfferDialogOpen(true);
+    const handleCloseMakeOfferDialog = () => setIsMakeOfferDialogOpen(false);
 
     //Is Edit dialog open
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
 
-    const hanleOpenEditDialog = () => setIsEditDialogOpen(true);
-    const hanleCloseEditDialog = () => setIsEditDialogOpen(false);
+    const handleOpenEditDialog = () => setIsEditDialogOpen(true);
+    const handleCloseEditDialog = () => setIsEditDialogOpen(false);
 
+    //Is Delete dialog open
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+
+    const handleOpenDeleteDialog = () => setIsDeleteDialogOpen(true);
+    const handleCloseDeleteDialog = () => setIsDeleteDialogOpen(false);
+
+    const handleDeleteCar = () => {
+        deleteCarOffer(userId, carInfo._id);
+        history.push('/my-car-ads');
+        handleCloseDeleteDialog();
+    }
 
     const isOwner = userId == carInfo.userId;
-    console.log(isOwner)
 
     return (
         <div className="car-details-page">
@@ -97,14 +109,14 @@ const CarDetails = ({
                     <div className="buttons-container">
                         {isOwner
                             ? <>
-                                <Button variant="contained" color="primary" onClick={hanleOpenEditDialog}>
+                                <Button variant="contained" color="primary" onClick={handleOpenEditDialog}>
                                     Edit
                                 </Button>
-                                <Button variant="contained" color="secondary" onClick={hanleOpenMakeOfferDialog}>
+                                <Button variant="contained" color="secondary" onClick={handleOpenDeleteDialog}>
                                     Delete
                                 </Button>
                             </>
-                            : <Button variant="contained" color="primary" onClick={hanleOpenMakeOfferDialog}>
+                            : <Button variant="contained" color="primary" onClick={handleOpenMakeOfferDialog}>
                                 Make an offer
                             </Button>
                         }
@@ -117,7 +129,7 @@ const CarDetails = ({
                 !isOwner && <MakeOfferDialog
                     userId={userId}
                     carId={carInfo._id}
-                    handleCloseDialog={hanleCloseMakeOfferDialog}
+                    handleCloseDialog={handleCloseMakeOfferDialog}
                     isOpen={isMakeOfferDialogOpen}
                     createBuyCarOffer={createBuyCarOffer}
                 />
@@ -127,8 +139,17 @@ const CarDetails = ({
                 isOwner && <EditSellCarDialog
                     userId={userId}
                     isOpen={isEditDialogOpen}
-                    handleCloseDialog={hanleCloseEditDialog}
+                    handleCloseDialog={handleCloseEditDialog}
                     carInfo={carInfo}
+                />
+            }
+
+            {
+                isOwner && <ConfirmDeleteDialog
+                    isOpen={isDeleteDialogOpen}
+                    text='Are you sure you want to delete this ad ?'
+                    handleCloseDialog={handleCloseDeleteDialog}
+                    deleteAction={handleDeleteCar}
                 />
             }
 
@@ -136,6 +157,6 @@ const CarDetails = ({
     )
 };
 
-const mapDispatchToProps = { createBuyCarOffer };
+const mapDispatchToProps = { createBuyCarOffer, deleteCarOffer };
 
 export default connect(null, mapDispatchToProps)(CarDetails);

@@ -100,6 +100,25 @@ const carService = {
                 return res.json();
             })
     },
+
+    deleteCarOffer: function (userId, carId) {
+        const state = store.getState();
+        const token = state.auth.accessToken;
+
+        return fetch(api.userCar(userId, carId), {
+            method: 'DELETE',
+            headers: {
+                ...(token && { 'x-access-token': token })
+            }
+        })
+            .then(async res => {
+                if (!res.ok) {
+                    throw await res.json();
+                }
+
+                return res.json();
+            })
+    },
 };
 
 export default carService;

@@ -2,6 +2,7 @@ const { ObjectID } = require('../data/db');
 const carsData = require('../data/carsData');
 
 const addCar = carInfo => carsData.create(carInfo);
+const deleteCar = carId => carsData.delete(carId);
 
 const addCarBuyOffer = (carId, offerData) => carsData.addCarBuyOffer(carId, offerData);
 
@@ -38,4 +39,5 @@ module.exports = {
     addCarBuyOffer,
     getUserCars,
     updateCar,
+    deleteCar,
 };

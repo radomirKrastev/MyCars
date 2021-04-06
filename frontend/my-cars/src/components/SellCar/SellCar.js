@@ -63,13 +63,6 @@ const SellCar = ({
                     {...props} />
                 }
             </Formik>
-
-            {/* <FileUpload
-                accept=".jpg,.png,.jpeg"
-                label="Car images"
-                multiple
-                updateFilesCb={updateUploadedFiles}
-            /> */}
         </div>
     );
 };

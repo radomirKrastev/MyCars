@@ -1,0 +1,28 @@
+.confirm-delete-dialog {
+    .MuiPaper-root,
+    .MuiDialog-paperWidthSm {
+        max-width: 40%;
+        width: 40%;
+    }
+
+    .dialog-title-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .dialog-close-btn {
+            width: 20px;
+            height: 20px;
+        }
+    }
+    
+    .action-buttons-container {
+        margin: 10px 0 10px 0;
+        width: fit-content;
+        margin-left: auto;
+
+        .yes-button {
+            margin-right: 10px;
+        }
+    }
+}

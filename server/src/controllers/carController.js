@@ -69,4 +69,17 @@ router.put('/:carId', verifyToken, async (req, res) => {
     }
 });
 
+router.delete('/:carId', verifyToken, async (req, res) => {
+    try {
+        const { carId } = req.params;
+
+        await carService.deleteCar(carId);
+
+        res.json({});
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ message: 'Add car failed!' });
+    }
+});
+
 module.exports = router;

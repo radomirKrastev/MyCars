@@ -1,10 +1,15 @@
 import {
     SEARCH_CARS_FETCH_SUCCESS,
     UPDATE_CAR_FETCH_SUCCESS,
+    DELETE_CAR_SUCCESS,
 } from '../actions/actionTypes';
 
 const carsReducer = (state = [], action) => {
+    console.log('red')
     switch (action.type) {
+        case DELETE_CAR_SUCCESS:
+            const filteredState = state.filter(x => x._id != action.payload);
+            return filteredState;
         case SEARCH_CARS_FETCH_SUCCESS:
             return action.payload;
         case UPDATE_CAR_FETCH_SUCCESS:

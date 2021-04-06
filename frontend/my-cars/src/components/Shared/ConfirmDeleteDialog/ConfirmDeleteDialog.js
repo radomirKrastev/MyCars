@@ -6,36 +6,37 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
-import SellCar from '../../SellCar';
+import './ConfirmDeleteDialog.scss';
 
-import './EditSellCarDialog.scss';
-
-const EditSellCarDialog = ({
-    userId,
+const ConfirmDeleteDialog = ({
     isOpen,
     handleCloseDialog,
-    carInfo,
+    deleteAction,
+    text,
 }) => {
-    console.log(123)
     return (
-        <Dialog className="make-offer-dialog" open={isOpen} onClose={handleCloseDialog}>
+        <Dialog className="confirm-delete-dialog" open={isOpen} onClose={handleCloseDialog}>
             <MuiDialogTitle disableTypography className="dialog-title-container">
-                <Typography variant="body2" className="dialog-title-text">Make an offer to the seller</Typography>
+                <Typography variant="body2" className="dialog-title-text">{text}</Typography>
                 <IconButton className="dialog-close-btn" onClick={handleCloseDialog}>
                     <CloseIcon />
                 </IconButton>
             </MuiDialogTitle>
 
             <DialogContent className="dialog-content">
-                <SellCar
-                    carInfo={carInfo}
-                    isEditMode={true}
-                    userId={userId}
-                />
+                <div className="action-buttons-container">
+                    <Button className="yes-button" variant="contained" color="primary" onClick={deleteAction}>
+                        Yes
+                    </Button>
+                    <Button variant="contained" color="secondary" onClick={handleCloseDialog}>
+                        No
+                    </Button>
+                </div>
             </DialogContent>
         </Dialog>
     )
 };
 
-export default EditSellCarDialog;
+export default ConfirmDeleteDialog;

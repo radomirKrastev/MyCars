@@ -1,9 +1,9 @@
 import carService from '../services/carService';
-import { push } from 'connected-react-router';
 
 import {
     SEARCH_CARS_FETCH_SUCCESS,
     UPDATE_CAR_FETCH_SUCCESS,
+    DELETE_CAR_SUCCESS,
 } from './actionTypes';
 
 const fetchSearchCarsSuccess = carsData => ({
@@ -14,6 +14,11 @@ const fetchSearchCarsSuccess = carsData => ({
 const fetchUpdateCarSuccess = updatedCarData => ({
     type: UPDATE_CAR_FETCH_SUCCESS,
     payload: updatedCarData
+});
+
+const deleteCarSuccess = carId => ({
+    type: DELETE_CAR_SUCCESS,
+    payload: carId
 });
 
 export const uploadCarAd = (userId, data) => async dispatch => {
@@ -57,6 +62,16 @@ export const updateCarOffer = (userId, carId, updateData) => async dispatch => {
         console.log({ userId, carId, updateData })
         const result = await carService.updateCarOffer(userId, carId, updateData);
         dispatch(fetchUpdateCarSuccess(result));
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+export const deleteCarOffer = (userId, carId) => async dispatch => {
+    try {
+        console.log({ userId, carId })
+        await carService.deleteCarOffer(userId, carId);
+        dispatch(deleteCarSuccess(carId));
     } catch (err) {
         console.log(err);
     }
