@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import LoginFormView from './LoginFormView';
-import loginSchemaValidation from './LoginSchemaValidation';
 import { login } from '../../actions/authActions';
+
+import { validateRequiredFields } from '../../utils/formValidations';
 
 const Login = ({ login }) => {
     return (
@@ -13,11 +14,17 @@ const Login = ({ login }) => {
                     username: '',
                     password: '',
                 }}
-                validationSchema={loginSchemaValidation}
+                validate={values => {
+                    return {
+                        ...validateRequiredFields(values, [
+                            'username',
+                            'password',
+                        ]),
+                    }
+                }}
                 onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(false);
                     const { username, password } = values;
-                    console.log('submit', values)
                     login(username, password);
                 }}
             >

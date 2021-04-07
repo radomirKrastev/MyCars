@@ -13,7 +13,6 @@ const LoginFormView = (props) => (
                 value={props.values.username}
                 onChange={props.handleChange}
                 onBlur={props.handleBlur}
-                // id="register-email" 
                 label="Username"
                 error={props.errors.username && props.touched.username}
                 margin="normal"
@@ -31,7 +30,6 @@ const LoginFormView = (props) => (
                 value={props.values.password}
                 onChange={props.handleChange}
                 onBlur={props.handleBlur}
-                // id="register-email"
                 label="Password"
                 error={props.errors.password && props.touched.password}
                 margin="normal"
@@ -44,9 +42,6 @@ const LoginFormView = (props) => (
             <Button type="submit" variant="contained" color="primary" onClick={props.handleSubmit}>
                 Log in
             </Button>
-            {/* <Button className="common-btn sign-up-btn" variant="outlined" color="primary" component={RouterLink} to="/register">
-                Sign Up
-            </Button> */}
         </div>
     </form>
 );

@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import FileUpload from '../Shared/FileUpload';
 import SellCarFormView from './SellCarFormView';
 import { Formik } from 'formik';
 
 import { uploadCarAd, updateCarOffer } from '../../actions/carAcions';
+
+import {
+    validateRequiredFields,
+    validateDecimalNumbers,
+    validateInputLength
+} from '../../utils/formValidations';
 
 const SellCar = ({
     userId,
@@ -36,7 +41,21 @@ const SellCar = ({
                     price: carInfo ? carInfo.price : '',
                     description: carInfo ? carInfo.description : ''
                 }}
-                // validationSchema={loginSchemaValidation}
+                validate={values => {
+                    return {
+                        ...validateRequiredFields(values, [
+                            'make',
+                            'model',
+                            'year',
+                            'price',
+                            'description',
+                        ]),
+                        ...validateDecimalNumbers(values, ['price']),
+                        ...validateInputLength(values, [
+                            { property: 'description', maxFieldLength: 3000 },
+                        ]),
+                    }
+                }}
                 onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(false);
                     const data = new FormData();

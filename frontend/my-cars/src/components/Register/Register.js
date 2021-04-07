@@ -2,8 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Formik } from 'formik';
 import RegisterFormView from './RegisterFormView';
-import registerSchemaValidation from './RegisterSchemaValidation';
 import { register } from '../../actions/authActions';
+
+import {
+    validateRequiredFields,
+    validateInputLength,
+    validatePasswordEquality,
+    validatePasswordRequirements,
+} from '../../utils/formValidations';
 
 const Register = ({
     register
@@ -16,11 +22,23 @@ const Register = ({
                     password: '',
                     repeatPassword: '',
                 }}
-                validationSchema={registerSchemaValidation}
+                validate={values => {
+                    return {
+                        ...validateRequiredFields(values, [
+                            'username',
+                            'password',
+                            'repeatPassword',
+                        ]),
+                        ...validateInputLength(values, [
+                            { property: 'username', maxFieldLength: 35 },
+                            { property: 'password', maxFieldLength: 35 },
+                        ]),
+                        ...validatePasswordRequirements(values, 'password'),
+                        ...validatePasswordEquality(values, 'password', 'repeatPassword')
+                    }
+                }}
                 onSubmit={(values, { setSubmitting }) => {
                     setSubmitting(false);
-                    // let { email, password } = values;
-                    // login(email.trim(), password.trim());
                     register(values)
                 }}
             >

@@ -1,5 +1,9 @@
 .sell-car-form-wrapper {
     .sell-car-form {
+        .invalid-field-message {
+            color: red;
+        }
+
         .MuiTextField-root {
             margin: 0;            
         }
