@@ -36,9 +36,9 @@ router.get('/', verifyToken, async (req, res) => {
 router.post('/:carId', verifyToken, async (req, res) => {
     try {
         const { userId, carId } = req.params;
-        const { offerDescription } =req.body;
+        const { offerDescription, phone, name } = req.body;
 
-        await carService.addCarBuyOffer(carId, { userId, offerDescription });
+        await carService.addCarBuyOffer(carId, { userId, offerDescription, phone, name });
 
         res.json({});
     } catch (err) {

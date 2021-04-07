@@ -10,6 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { ErrorMessage } from 'formik';
+import MakeOfferDialogFormView from './MakeOfferDialogFormView';
 
 import './MakeOfferDialog.scss';
 
@@ -32,7 +33,9 @@ const MakeOfferDialog = ({
             <DialogContent className="dialog-content">
                 <Formik
                     initialValues={{
-                        offerDescription: ''
+                        offerDescription: '',
+                        phone: '',
+                        name: '',
                     }}
                     validate={(values) => {
                         //make validations
@@ -44,31 +47,7 @@ const MakeOfferDialog = ({
                         handleCloseDialog();
                     }}
                 >
-                    {(props) =>
-                        <form className="make-offer-form" autoComplete="off">
-                            <div >
-                                <TextField
-                                    name="offerDescription"
-                                    value={props.values.offerDescription}
-                                    onChange={props.handleChange}
-                                    label="Offer"
-                                    error={props.errors.offerDescription && props.touched.offerDescription}
-                                    margin="normal"
-                                    variant="outlined"
-                                    multiline
-                                    rows={7}
-                                    fullWidth
-                                />
-                                <ErrorMessage name="offerDescription" component="div" className="invalid-field-message" />
-                            </div>
-
-                            <div className="buttons-container">
-                                <Button onClick={props.handleSubmit} type="submit" variant="contained" color="primary">
-                                    Send Offer
-                                </Button>
-                            </div>
-                        </form>
-                    }
+                    {(props) => <MakeOfferDialogFormView {...props} />}
                 </Formik>
             </DialogContent>
         </Dialog>

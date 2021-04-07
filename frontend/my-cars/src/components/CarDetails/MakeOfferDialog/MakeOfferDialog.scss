@@ -21,4 +21,21 @@
         width: fit-content;
         margin-left: auto;
     }
+
+    .make-offer-form {      
+        .MuiTextField-root {
+            margin: 0;            
+        }
+
+        .form-block {
+            .form-field {
+                width: 47.5%;
+            }
+
+            justify-content: space-between;
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+    }
 }

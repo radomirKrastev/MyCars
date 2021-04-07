@@ -1,27 +1,11 @@
-.car-info-card {
+.offer-info-card {
+    width: 80%;
+    margin: 0 auto;
     border: 1px solid aqua;
     margin-top: 20px;
     margin-bottom: 20px;
-    cursor: pointer;
 
-    .car-info-container {
-        display: flex;
-        align-items: center;
-
-        .image-container {
-            display: flex;
-            flex-shrink: 0;
-            width: 30%;
-            min-width: 300px;
-
-            img {
-                width: 100%;
-                height: auto;
-            }
-        }
-    }
-
-    .car-info-content {
+    .offer-info-content {
         display: flex;
         flex-wrap: wrap;
         width: 65%;
@@ -29,11 +13,11 @@
         margin: 0 auto;
 
 
-        .car-info {
+        .buyer-info {
             display: flex;
             justify-content: center;
 
-            .car-deital-container {
+            .buyer-deital-container {
                 display: flex;
                 margin-right: 2%;
 
@@ -43,25 +27,14 @@
             }
         }
 
-        .car-description {
+        .offer-description {
             margin-top: 20px;
 
-            .car-deital-container.description {
+            .offer-deital-container.description {
                 text-align: center;
             }
 
-            // p {
-            //     overflow: hidden;
-            //     text-overflow: ellipsis;
-            //     display: -webkit-box;
-            //     -webkit-line-clamp: 4;
-            //     -webkit-box-orient: vertical;
-            // }
-
             pre {
-                // font-family: 'Roboto', sans-serif;
-                // color: #7E7E7E;
-                // font-size: 16px;
                 white-space: pre-wrap;
                 white-space: -moz-pre-wrap;
                 white-space: -pre-wrap;

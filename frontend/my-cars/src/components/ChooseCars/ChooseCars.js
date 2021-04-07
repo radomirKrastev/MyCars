@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { searchCars } from '../../actions/carAcions';
@@ -34,6 +34,10 @@ const ChooseCars = ({
         setFilters(filtersSelected);
         searchCars(filtersSelected);
     }
+
+    useEffect(() => {
+        searchCars({})
+    }, []);
 
     console.log(cars);
 

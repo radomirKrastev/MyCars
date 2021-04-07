@@ -1,6 +1,7 @@
 
 .car-details-page {
     width: 100%;
+    padding: 20px 0 20px 0;
 
     .car-details-card {
         margin: 0 auto;  
@@ -39,9 +40,6 @@
                 }
 
                 pre {
-                    // font-family: 'Roboto', sans-serif;
-                    // color: #7E7E7E;
-                    // font-size: 16px;
                     white-space: pre-wrap;
                     white-space: -moz-pre-wrap;
                     white-space: -pre-wrap;
@@ -59,14 +57,3 @@
         }
     }
 }
-
-
-// .image {
-//     // background-position: 50% 50%;
-//     // background-size: contain;
-//     // background-repeat: no-repeat;
-//     background-size: contain;
-//     background-repeat: no-repeat;
-//     background-position: center;
-//     min-height: 40vh;
-//   }

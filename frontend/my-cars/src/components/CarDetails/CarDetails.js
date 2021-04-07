@@ -14,6 +14,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import MakeOfferDialog from './MakeOfferDialog';
 import EditSellCarDialog from './EditSellCarDialog';
 import ConfirmDeleteDialog from '../Shared/ConfirmDeleteDialog';
+import MyCarCard from '../MyCarCard';
 
 import './CarDetails.scss';
 
@@ -60,7 +61,11 @@ const CarDetails = ({
     const isOwner = userId == carInfo.userId;
 
     return (
+        
         <div className="car-details-page">
+            {console.log(isOwner)}
+            {console.log(carInfo)}
+
             <Paper className="car-details-card">
                 <div className="image-container">
                     <img src={carInfo.uploadedImagesData[activeStep].url}></img>
@@ -151,6 +156,16 @@ const CarDetails = ({
                     handleCloseDialog={handleCloseDeleteDialog}
                     deleteAction={handleDeleteCar}
                 />
+            }
+
+
+            {
+                isOwner && carInfo.offers.map((x, i) => { 
+                    return <MyCarCard
+                        key={i}
+                        offerInfo={x}
+                    />
+                })
             }
 
         </div>

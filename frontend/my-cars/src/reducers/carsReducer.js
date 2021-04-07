@@ -5,7 +5,6 @@ import {
 } from '../actions/actionTypes';
 
 const carsReducer = (state = [], action) => {
-    console.log('red')
     switch (action.type) {
         case DELETE_CAR_SUCCESS:
             const filteredState = state.filter(x => x._id != action.payload);
