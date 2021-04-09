@@ -11,7 +11,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
+import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 import { NavLink } from 'react-router-dom';
 
 import './SideMenu.scss';
@@ -20,17 +23,17 @@ const menuItems = [
     {
         title: 'Choose your car',
         navigateTo: '/choose-cars',
-        icon: <InboxIcon />
+        icon: <ImportContactsIcon />
     },
     {
         title: 'Sell your car',
         navigateTo: '/sell-car',
-        icon: <InboxIcon />
+        icon: <AttachMoneyIcon />
     },
     {
         title: 'My car ads',
         navigateTo: '/my-car-ads',
-        icon: <InboxIcon />
+        icon: <DirectionsCarIcon />
     },
 ]
 
@@ -68,7 +71,7 @@ const SideMenu = ({
                                 onClick={() => logout()}
                                 className="list-item"
                             >
-                                <ListItemIcon>{<InboxIcon />}</ListItemIcon>
+                                <ListItemIcon>{<ExitToAppIcon />}</ListItemIcon>
                                 <ListItemText primary={'Logout'} />
                             </ListItem>
                         </List>

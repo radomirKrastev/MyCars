@@ -6,6 +6,8 @@ import {
     DELETE_CAR_SUCCESS,
 } from './actionTypes';
 
+import { notifySuccess } from '../utils/notifications';
+
 const fetchSearchCarsSuccess = carsData => ({
     type: SEARCH_CARS_FETCH_SUCCESS,
     payload: carsData
@@ -25,7 +27,7 @@ export const uploadCarAd = (userId, data) => async dispatch => {
     try {
         console.log(userId, data);
         await carService.uploadCarAd(userId, data);
-
+        notifySuccess('Car ad uploaded successfuly');
     } catch (err) {
         console.log(err);
     }
@@ -43,6 +45,7 @@ export const searchCars = filters => async dispatch => {
 export const createBuyCarOffer = (userId, carId, offer) => async dispatch => {
     try {
         await carService.createBuyCarOffer(userId, carId, offer);
+        notifySuccess('offer send successfuly');
     } catch (err) {
         console.log(err);
     }
@@ -62,6 +65,7 @@ export const updateCarOffer = (userId, carId, updateData) => async dispatch => {
         console.log({ userId, carId, updateData })
         const result = await carService.updateCarOffer(userId, carId, updateData);
         dispatch(fetchUpdateCarSuccess(result));
+        notifySuccess('Car ad updated successfuly');
     } catch (err) {
         console.log(err);
     }
@@ -72,6 +76,7 @@ export const deleteCarOffer = (userId, carId) => async dispatch => {
         console.log({ userId, carId })
         await carService.deleteCarOffer(userId, carId);
         dispatch(deleteCarSuccess(carId));
+        notifySuccess('Car ad deleted successfuly');
     } catch (err) {
         console.log(err);
     }

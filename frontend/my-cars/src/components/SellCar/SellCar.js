@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { notifyError } from '../../utils/notifications';
 import { useHistory } from 'react-router-dom';
-import SellCarFormView from './SellCarFormView';
 import { Formik } from 'formik';
+
+import SellCarFormView from './SellCarFormView';
 
 import { uploadCarAd, updateCarOffer } from '../../actions/carAcions';
 
@@ -56,8 +58,14 @@ const SellCar = ({
                         ]),
                     }
                 }}
-                onSubmit={(values, { setSubmitting }) => {
+                onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(false);
+
+                    if(!carImagesFiles.carImages.length) {
+                        notifyError('You must upload car images');
+                        return
+                    }
+
                     const data = new FormData();
 
                     data.append('sellCarInfo', JSON.stringify({ ...values }));
@@ -71,7 +79,10 @@ const SellCar = ({
                         history.push('/my-car-ads');
                     } else {
                         uploadCarAd(userId, data);
+                        setCarImagesFiles({ carImages: [] });
                     }
+
+                    resetForm({})
                 }}
             >
                 {(props) => <SellCarFormView

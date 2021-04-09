@@ -158,7 +158,6 @@ const CarDetails = ({
                 />
             }
 
-
             {
                 isOwner && carInfo.offers.map((x, i) => { 
                     return <MyCarCard
