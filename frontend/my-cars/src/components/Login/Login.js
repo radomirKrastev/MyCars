@@ -6,9 +6,11 @@ import { login } from '../../actions/authActions';
 
 import { validateRequiredFields } from '../../utils/formValidations';
 
+import './Login.scss';
+
 const Login = ({ login }) => {
     return (
-        <div >
+        <div className="login-page">
             <Formik
                 initialValues={{
                     username: '',

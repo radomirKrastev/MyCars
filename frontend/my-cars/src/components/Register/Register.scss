@@ -1,17 +1,17 @@
-.login-page {
+.register-page {
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    .login-form {
+    .register-form {
         width: 25%;
 
-        .login-field {
+        .register-field {
             width: 100%;
         }
 
-        .login-buttons {
+        .register-buttons {
             display: flex;
             justify-content: space-between;
 

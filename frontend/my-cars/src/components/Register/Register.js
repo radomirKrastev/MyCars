@@ -11,11 +11,13 @@ import {
     validatePasswordRequirements,
 } from '../../utils/formValidations';
 
+import './Register.scss';
+
 const Register = ({
     register
  }) => {
     return (
-        <div >
+        <div className="register-page">
             <Formik
                 initialValues={{
                     username: '',

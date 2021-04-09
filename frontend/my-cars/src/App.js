@@ -21,7 +21,6 @@ const App = () => (
     <RouteWrapper path='/my-car-ads' component={isAuthenticated(MyCarAds)}/>
     <RouteWrapper path='/car-details/:carId' component={isAuthenticated(CarDetails)}/>
     <RouteWrapper path='/sell-car' component={isAuthenticated(withUserData(SellCar))}/>
-    {/* <RouteWrapper path='/sell-car/:carId' component={isAuthenticated(SellCar)}/> */}
     <RouteWrapper path='/' exact component={isAuthenticated(Home)}/>
     <Route path='/login' exact component={Login}/>
     <Route path='/register' exact component={Register}/>

@@ -2,13 +2,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Link from '@material-ui/core/Link';
 import { ErrorMessage } from 'formik';
-// import FieldError from 'components/Shared/FieldError';
-
-// import '../Register.scss';
 
 const RegisterFormView = (props) => (
     <form className="register-form" autoComplete="off">
@@ -38,7 +32,6 @@ const RegisterFormView = (props) => (
                 value={props.values.password}
                 onChange={props.handleChange}
                 onBlur={props.handleBlur}
-                // id="register-email"
                 label="Password"
                 error={props.errors.password && props.touched.password}
                 margin="normal"
@@ -56,7 +49,6 @@ const RegisterFormView = (props) => (
                 value={props.values.repeatPassword}
                 onChange={props.handleChange}
                 onBlur={props.handleBlur}
-                // id="register-email"
                 label="Confirm Password"
                 error={props.errors.repeatPassword && props.touched.repeatPassword}
                 margin="normal"
@@ -65,26 +57,13 @@ const RegisterFormView = (props) => (
             <ErrorMessage name="repeatPassword" component="div" className="invalid-field-message" />
         </div>
 
-        {/* <div className="pwd-options">
-            <FormControlLabel
-                className="remember-pwd-label"
-                value="rememberMe"
-                control={<Checkbox className="remember-pwd-checkbox" color="primary"/>}
-                label="Remember me"
-                labelPlacement="end"
-            />
-            <Link className="forgotten-pwd-link" component={RouterLink} to="/forgottenpassword">
-                Forgot Password
-            </Link>
-        </div> */}
-
-        <div >
+        <div className="register-buttons">
             <Button type="submit" variant="contained" color="primary" onClick={props.handleSubmit}>
                 Register
             </Button>
-            {/* <Button className="common-btn sign-up-btn" variant="outlined" color="primary" component={RouterLink} to="/register">
-                Sign Up
-            </Button> */}
+            <Button variant="contained" color="primary" component={RouterLink} to="/login">
+                Sign In
+            </Button>
         </div>
     </form>
 );

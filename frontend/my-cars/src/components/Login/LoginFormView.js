@@ -1,6 +1,9 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+
 import { ErrorMessage } from 'formik';
 
 const LoginFormView = (props) => (
@@ -38,9 +41,13 @@ const LoginFormView = (props) => (
             <ErrorMessage name="password" component="div" className="invalid-field-message" />
         </div>
 
-        <div >
+        <div className="login-buttons">
             <Button type="submit" variant="contained" color="primary" onClick={props.handleSubmit}>
-                Log in
+                Sign in
+            </Button>
+
+            <Button type="submit" variant="contained" color="primary" component={RouterLink} to="/register">
+                Register
             </Button>
         </div>
     </form>
