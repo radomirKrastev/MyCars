@@ -1,6 +1,8 @@
 import authService from '../services/authService';
 import { push } from 'connected-react-router';
 
+import { notifySuccess } from '../utils/notifications';
+
 import {
     LOGIN_FETCH_SUCCESS,
     USER_LOGOUT,
@@ -21,6 +23,7 @@ export const login = (username, password) => async dispatch => {
         console.log(loginResponse);
         dispatch(fetchLoginSuccess(loginResponse));
         dispatch(push('/choose-cars'));
+        notifySuccess('Login successfuly');
     } catch (err) {
         console.log(err);
     }
@@ -30,7 +33,7 @@ export const register = userData => async dispatch => {
     try {
         await authService.register(userData);
         dispatch(push('/login'));
-
+        notifySuccess('Registration successfuly');
     } catch (err) {
         console.log(err);
     }
