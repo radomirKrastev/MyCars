@@ -25,6 +25,7 @@ const SellCar = ({
     const [carImagesFiles, setCarImagesFiles] = useState({
         carImages: []
     });
+    const [files, setFiles] = useState({});
 
     const history = useHistory();
 
@@ -61,7 +62,7 @@ const SellCar = ({
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(false);
 
-                    if(!carImagesFiles.carImages.length) {
+                    if(!carImagesFiles.carImages.length && !isEditMode) {
                         notifyError('You must upload car images');
                         return
                     }
@@ -80,6 +81,7 @@ const SellCar = ({
                     } else {
                         uploadCarAd(userId, data);
                         setCarImagesFiles({ carImages: [] });
+                        setFiles({});
                     }
 
                     resetForm({})
@@ -90,6 +92,8 @@ const SellCar = ({
                     selectedCarMake={selectedCarMake}
                     handleSelectCarMake={handleSelectCarMake}
                     isEditMode={isEditMode}
+                    files={files}
+                    setFiles={setFiles}
                     {...props} />
                 }
             </Formik>

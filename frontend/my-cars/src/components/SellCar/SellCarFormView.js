@@ -24,6 +24,8 @@ const SellCarFormView = ({
     selectedCarMake,
     updateUploadedFiles,
     isEditMode,
+    files,
+    setFiles,
 }) => (
     <form className="sell-car-form" autoComplete="off">
 
@@ -134,6 +136,8 @@ const SellCarFormView = ({
             label={isEditMode ? 'Upload you car images (This will replace the previous uploaded images)' : 'Upload your car images'}
             multiple
             updateFilesCb={updateUploadedFiles}
+            files={files}
+            setFiles={setFiles}
         />
 
         <div className="submit-button-container" >
