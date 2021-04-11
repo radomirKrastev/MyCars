@@ -1,7 +1,7 @@
 import authService from '../services/authService';
 import { push } from 'connected-react-router';
 
-import { notifySuccess } from '../utils/notifications';
+import { notifySuccess, notifyError } from '../utils/notifications';
 
 import {
     LOGIN_FETCH_SUCCESS,
@@ -25,6 +25,7 @@ export const login = (username, password) => async dispatch => {
         dispatch(push('/choose-cars'));
         notifySuccess('Login successfuly');
     } catch (err) {
+        notifyError('Login failed. Wrong username or password');
         console.log(err);
     }
 };
